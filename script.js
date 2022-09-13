@@ -11,12 +11,11 @@ const handleSearch = () => {
 };
 
 handleSearch()
-
+// ** Show artist
 const showArtists = (data) => {
   console.log(data.artists)
   const artistContainer = elementById("artists");
-  // const {artists} = data;
-  // artists.forEach(artist => console.log(artist))
+  
   data?.artists?.forEach(artist => {
     console.log(artist)
     const div = document.createElement("div");
@@ -36,22 +35,26 @@ const showArtists = (data) => {
   </div>
   <button class="album-button">
     <i class="fa-solid fa-compact-disc"></i>
-    <p onclick="fetchAlbums('${artist.idArtist}')" class="button-title">Albums</p>
+    <p onclick="fetchAlbums(${artist.idArtist})" class="button-title">Albums</p>
   </button>`;
     artistContainer.appendChild(div);
   });
 };
 
+const API_KEY = `EABCD`
+
 const fetchAlbums = (id) => {
-  const url = `theaudiodb.com/api/v1/json/2/album.php?i=${id}`;
+  console.log(id)
+  const url = `https://theaudiodb.com/api/v1/json/${API_KEY}/album.php?i=${id}`;
   fetch(url)
-    .then((res) => res.JSON())
-    .then((data) => showAlbum(data));
+    .then((res) => res.json())
+    .then(data => console.log(data))
   const artistContainer = elementById("artists");
   artistContainer.innerHTML = "";
 };
 
 const showAlbum = (data) => {
+  console.log(data)
   const albumContainer = elementById("albums");
   album.forEach((item) => {
     const div = document.createElement("div");
