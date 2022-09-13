@@ -15,7 +15,7 @@ handleSearch()
 const showArtists = (data) => {
   console.log(data.artists)
   const artistContainer = elementById("artists");
-  
+  artistContainer.textContent = ``
   data?.artists?.forEach(artist => {
     console.log(artist)
     const div = document.createElement("div");
@@ -41,33 +41,34 @@ const showArtists = (data) => {
   });
 };
 
-const API_KEY = `EABCD`
+// const API_KEY = `EABCD`
 
 const fetchAlbums = (id) => {
   console.log(id)
-  const url = `https://theaudiodb.com/api/v1/json/${API_KEY}/album.php?i=${id}`;
+  const url = `https://theaudiodb.com/api/v1/json/2/album.php?i=${id}`;
   fetch(url)
     .then((res) => res.json())
-    .then(data => console.log(data))
+    .then(data => showAlbum(data))
   const artistContainer = elementById("artists");
   artistContainer.innerHTML = "";
 };
 
 const showAlbum = (data) => {
-  console.log(data)
+  const {album} = data;
   const albumContainer = elementById("albums");
   album.forEach((item) => {
+    console.log(item)
     const div = document.createElement("div");
     div.classList.add("album");
     div.innerHTML = `
         <div class="album-image-container">
           <img
-            src="${album.strAlbumThumb}"
+            src="${item?.strAlbumThumb}"
             alt=""
           />
         </div>
         <div class="album-name">
-          <h3>${album.strAlbum}</h3>
+          <h3>${item?.strAlbum}</h3>
         </div>
       `;
 
