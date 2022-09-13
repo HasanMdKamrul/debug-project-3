@@ -8,14 +8,15 @@ const handleSearch = () => {
   fetch(url)
     .then((res) => res.json())
     .then((data) => showArtists(data));
+  document.getElementById('albums').textContent = ``;
 };
 
-handleSearch()
+// handleSearch()
 // ** Show artist
 const showArtists = (data) => {
   console.log(data.artists)
   const artistContainer = elementById("artists");
-  artistContainer.textContent = ``
+  artistContainer.textContent = ``;
   data?.artists?.forEach(artist => {
     console.log(artist)
     const div = document.createElement("div");
@@ -49,13 +50,14 @@ const fetchAlbums = (id) => {
   fetch(url)
     .then((res) => res.json())
     .then(data => showAlbum(data))
-  const artistContainer = elementById("artists");
-  artistContainer.innerHTML = "";
+  // const artistContainer = elementById("artists");
+  // artistContainer.innerHTML = "";
 };
 
 const showAlbum = (data) => {
   const {album} = data;
   const albumContainer = elementById("albums");
+  albumContainer.textContent = ``
   album.forEach((item) => {
     console.log(item)
     const div = document.createElement("div");
