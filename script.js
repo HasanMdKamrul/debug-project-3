@@ -13,8 +13,12 @@ const handleSearch = () => {
 handleSearch()
 
 const showArtists = (data) => {
-  const artistContainer = elementById("artist");
-  data?.artists?.forEach((artist) => {
+  console.log(data.artists)
+  const artistContainer = elementById("artists");
+  // const {artists} = data;
+  // artists.forEach(artist => console.log(artist))
+  data?.artists?.forEach(artist => {
+    console.log(artist)
     const div = document.createElement("div");
     div.classList.add("artist-card");
     div.innerHTML = `<div class="image-container">
