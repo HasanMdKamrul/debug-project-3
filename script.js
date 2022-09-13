@@ -59,7 +59,7 @@ const showAlbum = (data) => {
   const albumContainer = elementById("albums");
   albumContainer.textContent = ``
   album.forEach((item) => {
-    console.log(item)
+    
     const div = document.createElement("div");
     div.classList.add("album");
     div.innerHTML = `
